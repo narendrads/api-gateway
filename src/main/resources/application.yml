@@ -6,26 +6,18 @@ spring:
     gateway:
       routes:
         - id: USER-SERVICE
-          uri: http://localhost:9091  # Use HTTP scheme for localhost
+          uri: http://localhost:9091
           predicates:
             - Path=/api/users/**
         - id: ROLES-SERVICE
-          uri: http://localhost:9092  # Use HTTP scheme for localhost
+          uri: http://localhost:9092
           predicates:
             - Path=/api/roles/**
         - id: ATTENDANCE-SERVICE
-          uri: http://localhost:9093  # Use HTTP scheme for localhost
+          uri: http://localhost:9093
           predicates:
-            - Path=/api/attendance/**
+            - Path=/api/attendance/**  config:
+    import: configserver:http://localhost:8585
         
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
-       
 server:
   port: 9090
